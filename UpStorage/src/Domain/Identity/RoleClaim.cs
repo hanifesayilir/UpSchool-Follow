@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Identity
+namespace Domain.Identity
 {
     public class RoleClaim:IdentityRoleClaim<string>
     {

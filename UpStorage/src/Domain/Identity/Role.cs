@@ -5,9 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Identity
+namespace Domain.Identity
 {
-    public class UserClaim:IdentityUserClaim<string>
+    public class Role:IdentityRole<string>
     {
+
     }
 }

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Identity
+namespace Domain.Identity
 {
-    public class UserRole:IdentityUserRole<string>
+    public class UserLogin:IdentityUserLogin<string>
     {
     }
 }

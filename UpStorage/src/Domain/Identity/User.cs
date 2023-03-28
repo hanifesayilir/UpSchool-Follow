@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Identity
+namespace Domain.Identity
 {
     public class User : IdentityUser<string>, IEntityBase<string>, ICreatedByEntity, IModifiedByEntity
     {
      
-        public string firstName { get; set; }
-        public string lastName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
         public DateTimeOffset CreatedOn { get; set; }
         public string? CreatedByUserId { get; set; }
