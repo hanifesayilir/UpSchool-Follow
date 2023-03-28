@@ -22,7 +22,6 @@ namespace Domain.Entities
         public decimal? Latitude { get; set; }
         public decimal? Longitude { get; set; }
         public string WikiDataId { get; set; }
-
         public ICollection<City> Cities { get; set; }
     }
 }

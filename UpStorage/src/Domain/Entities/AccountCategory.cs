@@ -14,8 +14,6 @@ namespace Domain.Entities
         public Guid CategoryId { get; set; }
         public Category Category { get; set; }
 
-        public string UserId { get; set; }
-
 
     }
 }

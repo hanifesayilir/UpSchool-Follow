@@ -10,7 +10,9 @@ namespace Domain.Entities
         public string Password { get; set; }
         public string? Url { get; set; }
         public bool IsFavourite { get; set; }
-       public ICollection<AccountCategory> AccountCategories { get; set; }
+
+        public string UserId { get; set; }
+        public ICollection<AccountCategory> AccountCategories { get; set; }
 
     }
 }

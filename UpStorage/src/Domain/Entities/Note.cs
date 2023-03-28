@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Note :EntityBase
+    public class Note :EntityBase<Guid>
     {
+        public string Name { get; set; }
     }
 }
