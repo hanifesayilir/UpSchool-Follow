@@ -1,4 +1,5 @@
-﻿using Domain.Identity;
+﻿using Domain.Entities;
+using Domain.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -57,6 +58,9 @@ namespace Infrastructure.Persistence.Configurations.Identity
 
             // Each User can have many entries in the UserRole join table
             builder.HasMany<UserRole>().WithOne().HasForeignKey(ur => ur.UserId).IsRequired();
+
+            // Each User can have may Adddress
+          //  builder.HasMany<Address>().WithOne().HasForeignKey(x => x.UserId).IsRequired();
 
             //Each User can have many UserTokens
 

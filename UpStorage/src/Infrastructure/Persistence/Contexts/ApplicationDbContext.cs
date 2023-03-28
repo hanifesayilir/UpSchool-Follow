@@ -8,5 +8,8 @@ namespace Infrastructure.Persistence.Contexts
 
     {
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<Country> Accounts { get; set; }
+        public DbSet<City> Accounts { get; set; }
+
     }
 }
