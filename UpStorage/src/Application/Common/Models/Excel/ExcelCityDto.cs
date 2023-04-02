@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,22 @@ namespace Application.Common.Models.Excel
         public string Name { get; set; }
         public decimal? Latitude { get; set; }
         public decimal? Longitude { get; set; }
+
+
+       public City MapToCity ()
+        {
+            return new City
+            {
+                Id = this.Id,
+                CountryId = this.CountryId,
+                Name = this.Name,
+                Latitude = this.Latitude,
+                Longitude = this.Longitude,
+                CreatedOn = DateTimeOffset.Now,
+                CreatedByUserId = null,
+                IsDeleted = false,
+            };
+        }
+
     }
 }
