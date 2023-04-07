@@ -1,6 +1,7 @@
 ﻿using Application.Common.Interfaces;
 using Domain.Common;
 using Domain.Entities;
+using Domain.Extensions;
 using MediatR;
 
 namespace Application.Features.Cities.Commands.Add
@@ -10,9 +11,18 @@ namespace Application.Features.Cities.Commands.Add
 
         private readonly IApplicationDbContext _applicationDbContext;
 
+        public CityAddCommandHandler(IApplicationDbContext applicationDbContext)
+        {
+            _applicationDbContext = applicationDbContext;
+        }
+
 
         public async Task<Response<int>> Handle(CityAddCommand request, CancellationToken cancellationToken)
         {
+            if (!request.Name.IsContainsChar(3))
+            {
+                throw new Exception();
+            }
             var city = new City()
             {
                 Name = request.Name,
