@@ -20,7 +20,7 @@ namespace Application.Features.Cities.Commands.Add
 
         public async Task<Response<int>> Handle(CityAddCommand request, CancellationToken cancellationToken)
         {
-           if(!await _applicationDbContext.Countries.AnyAsync(x => x.Id == request.CountryId, cancellationToken))
+          /* if(!await _applicationDbContext.Countries.AnyAsync(x => x.Id == request.CountryId, cancellationToken))
             {
                 throw new ArgumentNullException(nameof(request.CountryId));
             }
@@ -28,8 +28,16 @@ namespace Application.Features.Cities.Commands.Add
             if (await _applicationDbContext.Cities.AnyAsync(x => x.Name.ToLower() == request.Name.ToLower(), cancellationToken))
             {
                 throw new ArgumentNullException(nameof(request.Name));
-            }
+            }*/
 
+           /* var commandValidator = new CityAddCommandValidator(_applicationDbContext);
+
+            var result = await commandValidator.ValidateAsync(request, cancellationToken);
+
+            if(!result.IsValid)
+            {
+                throw new NullReferenceException("Fluent validation works!");
+            }*/
 
             var city = new City()
             {
