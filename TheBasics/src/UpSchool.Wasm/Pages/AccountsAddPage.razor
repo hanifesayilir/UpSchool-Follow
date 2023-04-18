@@ -1,4 +1,4 @@
-﻿@page "/accounts/add"
+﻿@page "/accounts/add/{ConnectionId}"
 @using UpSchool.Domain.Dtos
 @using UpSchool.Domain.Services
 @using UpSchool.Domain.Utilities
@@ -9,7 +9,7 @@
 <div class="card">
     <div class="card-header text-center">
         <div class="d-flex justify-content-center align-items-center">
-            <img src="svgs/plus.svg" class="me-2" /> <h2>Add a New Account</h2>
+            <img src="svgs/plus.svg" class="me-2"/> <h2>Add a New Account</h2>
         </div>
     </div>
 
@@ -21,13 +21,13 @@
 
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <InputText class="form-control" id="title" @bind-Value="@addDto.Title" />
+                <InputText class="form-control" id="title" @bind-Value="@addDto.Title"/>
                 <ValidationMessage For="@(() => addDto.Title)" />
             </div>
 
             <div class="mb-3">
                 <label for="userName" class="form-label">UserName</label>
-                <InputText class="form-control" id="userName" @bind-Value="@addDto.UserName" />
+                <InputText class="form-control" id="userName" @bind-Value="@addDto.UserName"/>
                 <ValidationMessage For="@(() => addDto.UserName)" />
             </div>
 
@@ -44,7 +44,7 @@
             </div>
 
             <div class="mb-3 form-check">
-                <InputCheckbox class="form-check-input" id="isFavourite" @bind-Value="@addDto.IsFavourite" />
+                <InputCheckbox class="form-check-input" id="isFavourite" @bind-Value="@addDto.IsFavourite"/>
                 <label class="form-check-label" for="isFavourite">Is Favourite?</label>
                 <ValidationMessage For="@(() => addDto.IsFavourite)" />
             </div>
@@ -60,6 +60,9 @@
 </div>
 
 @code {
+    [Parameter]
+    public string ConnectionId { get; set; }
+
     private AccountAddDto addDto = new AccountAddDto();
 
     private void OnCancel()
@@ -75,6 +78,8 @@
     private async Task SendForm()
     {
         addDto.Password = StringHelper.Base64Encode(addDto.Password);
+
+        addDto.ConnectionId = ConnectionId;
 
         var response = await HttpClient.PostAsJsonAsync("Accounts", addDto);
 

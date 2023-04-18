@@ -1,19 +1,20 @@
+using Blazored.LocalStorage;
 using Blazored.Toast;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using UpSchool.Wasm;
-using Blazored.LocalStorage;
-using System.Text.Json.Serialization;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using UpSchool.Domain.Services;
+using UpSchool.Wasm;
 using UpSchool.Wasm.Services;
-using UpSchool.Domain.Common;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
 var titanicFluteApiUrl = builder.Configuration.GetConnectionString("TitanicFlute");
 
 var apiUrl = builder.Configuration.GetSection("ApiUrl").Value!;
+
+var signalRUrl = builder.Configuration.GetSection("SignalRUrl").Value!;
 
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
@@ -27,7 +28,7 @@ builder.Services.AddScoped<IToasterService, BlazoredToastService>();
 
 //builder.Services.AddSingleton(typeof(LoggerBase));
 
-//builder.Services.AddSingleton<IUrlHelperService>(new UrlHelperService(titanicFluteApiUrl));
+builder.Services.AddSingleton<IUrlHelperService>(new UrlHelperService(titanicFluteApiUrl, signalRUrl));
 
 builder.Services.AddBlazoredLocalStorage(config =>
 {
