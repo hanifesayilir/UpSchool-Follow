@@ -1,8 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using Application.Common.Models.Auth;
-using Domain.Identity;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 
 namespace Application.Features.Auth.Commands.Register
 {
@@ -10,9 +8,14 @@ namespace Application.Features.Auth.Commands.Register
     {
         private IAuthentificationService _authentificationService;
 
-        public AuthRegisterCommandHandler(IAuthentificationService authentificationService)
+        private readonly IJwtService _jwtService;
+
+        public AuthRegisterCommandHandler(IAuthentificationService authentificationService, IJwtService jwtService)
         {
             _authentificationService = authentificationService;
+
+            _jwtService = jwtService;
+            
         }
 
         public async Task<AuthRegisterDto> Handle(AuthRegisterCommand request, CancellationToken cancellationToken)
@@ -25,7 +28,9 @@ namespace Application.Features.Auth.Commands.Register
 
 
             var fullName = $"{request.FirstName} {request.LastName}";
-            return new AuthRegisterDto(request.Email, fullName, emailToken);
+
+            var jwtDto = _jwtService.Generate(userId, request.FirstName, request.LastName, fullName);   
+            return new AuthRegisterDto(request.Email, fullName, jwtDto.AccessToken);
         }
     }
 }

@@ -43,6 +43,7 @@ namespace Infrastructure
             // Scoped Services
             services.AddScoped<IExcelService, ExcelManager>();
             services.AddScoped<IAuthentificationService, AuthenticationManager>();
+            services.AddSingleton<IJwtService, JwtManager>();
 
             return services;
 

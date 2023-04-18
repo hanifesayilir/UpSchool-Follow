@@ -13,7 +13,9 @@ namespace Infrastructure.Services
 
         private readonly UserManager<User> _userManager;
 
-        public AuthenticationManager(UserManager<User> userManager)
+       
+
+        public AuthenticationManager(UserManager<User> userManager, IJwtService jwtService)
         {
             _userManager = userManager;
         }
