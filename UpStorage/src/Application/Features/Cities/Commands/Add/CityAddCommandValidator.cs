@@ -30,7 +30,7 @@ namespace Application.Features.Cities.Commands.Add
             RuleFor(x => x.Name)
                 .MustAsync((command, name, cancellationToken) =>
                 {
-                    return _applicationDContext.Cities.AllAsync(x => x.Name.ToLower() == name.ToLower(), cancellationToken);
+                    return _applicationDContext.Cities.AllAsync(x => x.Name.ToLower() != name.ToLower(), cancellationToken);
                 });
 
           /* a sample for non synchronuous

@@ -1,5 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using Application.Common.Models.Auth;
+using Application.Common.Models.Email;
 using MediatR;
 
 namespace Application.Features.Auth.Commands.Register
@@ -10,11 +11,15 @@ namespace Application.Features.Auth.Commands.Register
 
         private readonly IJwtService _jwtService;
 
-        public AuthRegisterCommandHandler(IAuthentificationService authentificationService, IJwtService jwtService)
+        public readonly IEmailService _emailService; 
+
+        public AuthRegisterCommandHandler(IAuthentificationService authentificationService, IJwtService jwtService, IEmailService emailService)
         {
             _authentificationService = authentificationService;
 
             _jwtService = jwtService;
+
+            _emailService = emailService;
             
         }
 
@@ -29,7 +34,18 @@ namespace Application.Features.Auth.Commands.Register
 
             var fullName = $"{request.FirstName} {request.LastName}";
 
-            var jwtDto = _jwtService.Generate(userId, request.FirstName, request.LastName, fullName);   
+            var jwtDto = _jwtService.Generate(userId, request.FirstName, request.LastName, fullName);
+
+            
+            
+            _emailService.SendEmailConfirmation(new SendEmailConfirmationDto()
+
+            {
+                Email = request.Email,
+                Name = request.FirstName,
+                Token= emailToken
+            });
+
             return new AuthRegisterDto(request.Email, fullName, jwtDto.AccessToken);
         }
     }

@@ -1,9 +1,9 @@
 ﻿using Application.Common.Interfaces;
+using Application.Common.Localizations;
 using Domain.Common;
 using Domain.Entities;
-using Domain.Extensions;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Application.Features.Cities.Commands.Add
 {
@@ -12,9 +12,12 @@ namespace Application.Features.Cities.Commands.Add
 
         private readonly IApplicationDbContext _applicationDbContext;
 
-        public CityAddCommandHandler(IApplicationDbContext applicationDbContext)
+        private readonly IStringLocalizer<CommonLocalizations> _localizer;
+
+        public CityAddCommandHandler(IApplicationDbContext applicationDbContext, IStringLocalizer<CommonLocalizations> localizer)
         {
             _applicationDbContext = applicationDbContext;
+            _localizer = localizer;
         }
 
 
@@ -54,7 +57,7 @@ namespace Application.Features.Cities.Commands.Add
 
             await _applicationDbContext.SaveChangesAsync(cancellationToken);
 
-            return new Response<int>($"The new city \"{city.Name}\"named was succesfully added.", city.Id);
+            return new Response<int>(_localizer[CommonLocalizationKeys.City.Added, city.Name], city.Id);
         }
     }
 }

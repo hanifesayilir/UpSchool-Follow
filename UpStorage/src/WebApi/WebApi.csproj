@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\email_templates\Email_confirmation.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.4">
       <PrivateAssets>all</PrivateAssets>

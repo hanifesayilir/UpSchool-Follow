@@ -1,10 +1,12 @@
 ﻿using Application.Common.Interfaces;
+using Application.Common.Localizations;
 using Application.Common.Models.Auth;
 using Domain.Identity;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Infrastructure.Services
 {
@@ -13,13 +15,21 @@ namespace Infrastructure.Services
 
         private readonly UserManager<User> _userManager;
 
-       
+        private readonly SignInManager<User> _signInManager;
 
-        public AuthenticationManager(UserManager<User> userManager, IJwtService jwtService)
+        private readonly IJwtService _jwtService;
+
+        private readonly IStringLocalizer<CommonLocalizations> _localizer;
+
+
+
+        public AuthenticationManager(UserManager<User> userManager, SignInManager<User> signInManager, IJwtService jwtService, IStringLocalizer<CommonLocalizations> localizer)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
+            _jwtService = jwtService;
+            _localizer = localizer;
         }
-
         public Task<bool> CheckIfUserExists(string email, CancellationToken cancellationToken)
         {
             return _userManager.Users.AnyAsync(x => x.Email == email, cancellationToken);
@@ -54,8 +64,24 @@ namespace Infrastructure.Services
             
         }
 
-        
+        public async Task<JwtDto> LoginAsync(AuthLoginRequest authLoginRequest, CancellationToken cancellationToken)
+        {
 
-       
+            var user = await _userManager.FindByEmailAsync(authLoginRequest.Email);
+            var loginResult = await _signInManager.PasswordSignInAsync(user, authLoginRequest.Password, false, false);
+
+            if(!loginResult.Succeeded)
+            {
+                throw new ValidationException(CreateValidationFailure);
+            }
+
+            return _jwtService.Generate(user.Id, user.Email, user.FirstName, user.LastName);
+        }
+
+        private List<ValidationFailure> CreateValidationFailure => new List<ValidationFailure>()
+        {
+                new ValidationFailure("Email & Password",_localizer["EmailOrPasswordIsInCorrect"])
+
+        };
     }
 }

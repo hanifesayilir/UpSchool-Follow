@@ -12,7 +12,8 @@ namespace Infrastructure
     public static class ConfigureServices
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            string wwwrootPath)
         {
 
             var connectionString = configuration.GetConnectionString("MariaDB")!;
@@ -44,6 +45,10 @@ namespace Infrastructure
             services.AddScoped<IExcelService, ExcelManager>();
             services.AddScoped<IAuthentificationService, AuthenticationManager>();
             services.AddSingleton<IJwtService, JwtManager>();
+
+            // singleton services
+            services.AddSingleton<ITwoFactorService, TwoFactorManager>();
+            services.AddSingleton<IEmailService>(new EmailManager(wwwrootPath));
 
             return services;
 
