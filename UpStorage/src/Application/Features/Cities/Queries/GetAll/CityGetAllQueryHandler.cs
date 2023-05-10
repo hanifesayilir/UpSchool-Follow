@@ -40,7 +40,7 @@ namespace Application.Features.Cities.Queries.GetAll
             }
             var dbQuery = _applicationDbContext.Cities.AsQueryable();
 
-           // dbQuery = dbQuery.Where(x => x.CountryId == request.CountryId);
+            dbQuery = dbQuery.Where(x => x.CountryId == request.CountryId);
 
             if (request.IsDeleted.HasValue) dbQuery = dbQuery.Where(x => x.IsDeleted == request.IsDeleted.Value);
 

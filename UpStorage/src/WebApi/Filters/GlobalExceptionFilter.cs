@@ -8,6 +8,13 @@ namespace WebApi.Filters
 {
     public  class GlobalExceptionFilter : IAsyncExceptionFilter
     {
+        private readonly ILogger<GlobalExceptionFilter> _logger;
+
+        public GlobalExceptionFilter(ILogger<GlobalExceptionFilter> logger)
+        {
+            _logger = logger;
+        }
+
         public Task OnExceptionAsync(ExceptionContext context)
         {
 
@@ -37,6 +44,7 @@ namespace WebApi.Filters
                     break;
 
                 default:
+                    _logger.LogError(context.Exception, context.Exception.Message);
                     apiErrorDto.Message = "An unexpected error occurred.";
                     context.Result = new ObjectResult(apiErrorDto)
                     {
