@@ -51,6 +51,6 @@ app.MapControllers();
 
 app.MapHub<AccountsHub>("/Hubs/AccountsHub");
 
-
+app.MapHub<SeleniumLogHub>("/Hubs/SeleniumLogHub");
 
 app.Run();
