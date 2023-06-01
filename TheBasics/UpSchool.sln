@@ -15,7 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpSchool.Persistence", "UpS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpSchool.WebApi", "UpSchool.WebApi\UpSchool.WebApi.csproj", "{E20E6F5C-8383-4FF7-BD11-933E45FD417C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpSchool.Selenium.ConsoleClient", "src\UpSchool.Selenium.ConsoleClient\UpSchool.Selenium.ConsoleClient.csproj", "{2842D132-3C96-4E1F-A5DF-A032AF32CC2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpSchool.Selenium.ConsoleClient", "src\UpSchool.Selenium.ConsoleClient\UpSchool.Selenium.ConsoleClient.csproj", "{2842D132-3C96-4E1F-A5DF-A032AF32CC2E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8F24AC30-FABC-48FE-959F-B1BA4AFE7823}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upschool.Domain.Tests", "tests\Upschool.Domain.Tests\Upschool.Domain.Tests.csproj", "{5363C4B3-669D-4FBF-B9B4-ED14A7D22697}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,9 +55,16 @@ Global
 		{2842D132-3C96-4E1F-A5DF-A032AF32CC2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2842D132-3C96-4E1F-A5DF-A032AF32CC2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2842D132-3C96-4E1F-A5DF-A032AF32CC2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5363C4B3-669D-4FBF-B9B4-ED14A7D22697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5363C4B3-669D-4FBF-B9B4-ED14A7D22697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5363C4B3-669D-4FBF-B9B4-ED14A7D22697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5363C4B3-669D-4FBF-B9B4-ED14A7D22697}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5363C4B3-669D-4FBF-B9B4-ED14A7D22697} = {8F24AC30-FABC-48FE-959F-B1BA4AFE7823}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2014F114-7C8A-4A2E-8141-AA6629D4F9EB}
