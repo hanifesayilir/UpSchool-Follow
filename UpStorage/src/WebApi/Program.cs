@@ -24,7 +24,10 @@ try
 {
     var builder = WebApplication.CreateBuilder(args);
 
+    builder.Host.UseSerilog();
     // Add services to the container.
+
+    builder.Services.AddScoped<ICurrentUserService, CurrentUserManager>();
 
     builder.Services.AddControllers(opt =>
     {
