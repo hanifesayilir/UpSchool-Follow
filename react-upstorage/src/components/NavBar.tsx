@@ -1,5 +1,10 @@
 import { Container, Menu, Image } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
+import { AccountGetAllDto } from "../types/AccountTypes";
+
+export type NabBarProps = {
+  accounts: AccountGetAllDto;
+};
 
 const NavBar = () => {
   return (
