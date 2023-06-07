@@ -14,34 +14,12 @@ import {
 } from "semantic-ui-react";
 import AccountCard from "../components/AccountCard";
 
-function AccountsPage() {
-  const dummyAccounts: AccountGetAllDto[] = [
-    {
-      Id: "12345",
-      Title: "Yemek Sepeti",
-      Url: "www.emeksepeti",
-      IsFavourite: false,
-      UserId: "ankgmial.com",
-      UserName: "alpettunga",
-      Password: "123alper32",
-      Categories: [],
-      ShowPassword: false,
-    },
+export type AccountsPageProps = {
+  accounts: AccountGetAllDto[];
+  setAccounts: (accounts: AccountGetAllDto[]) => void;
+};
 
-    {
-      Id: "45866",
-      Title: "Getir",
-      Url: "www.getir.com",
-      IsFavourite: false,
-      UserId: "ankgmial.com",
-      UserName: "alpettunga",
-      Password: "123alper32",
-      Categories: [],
-      ShowPassword: false,
-    },
-  ];
-  const [accounts, setAccounts] = useState<AccountGetAllDto[]>(dummyAccounts);
-
+function AccountsPage({ accounts, setAccounts }: AccountsPageProps) {
   const options = [
     { key: "1", text: "Ascending", value: "true" },
     { key: "2", text: "Descending", value: "false" },
@@ -50,9 +28,9 @@ function AccountsPage() {
   const onPasswordVisibilityToggle = (id: string) => {
     // Create a new array with the same accounts, but with the showPassword property of the account with the given id toggled
     const updatedAccounts = accounts.map((account) => {
-      if (account.Id === id) {
+      if (account.id === id) {
         // Toggle the showPassword property
-        return { ...account, ShowPassword: !account.ShowPassword };
+        return { ...account, ShowPassword: !account.showPassword };
       } else {
         // Leave the account unchanged
         return account;

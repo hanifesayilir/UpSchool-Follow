@@ -1,16 +1,16 @@
 export type AccountGetAllDto = {
-  Id: string;
-  Title: string;
-  UserName: string;
-  Password: string;
-  Url: string | null;
-  IsFavourite: boolean;
-  UserId: string;
-  Categories: AccountGetAllCategoryDto[];
-  ShowPassword: boolean;
+  id: string;
+  title: string;
+  userName: string;
+  password: string;
+  url: string | null;
+  isFavourite: boolean;
+  userId: string;
+  categories: AccountGetAllCategoryDto[];
+  showPassword: boolean | false;
 };
 
 export type AccountGetAllCategoryDto = {
-  Id: string;
-  Name: string;
+  id: string;
+  name: string;
 };
