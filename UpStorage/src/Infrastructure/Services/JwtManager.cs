@@ -27,13 +27,11 @@ namespace Infrastructure.Services
                 new Claim(JwtRegisteredClaimNames.Sub,userId),
                 new Claim(JwtRegisteredClaimNames.GivenName,firstName),
                 new Claim(JwtRegisteredClaimNames.FamilyName,lastName),
-                new Claim("ucretsizReklam","UpSchoolIsTheBest"),
-                new Claim("bizimReklamaIhtiyacimizYok","UpSchoolFSD"),
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
             };
 
             var symmetricKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey));
-            var signingCredentials = new SigningCredentials(symmetricKey, SecurityAlgorithms.HmacSha256);
+            var signingCredentials = new SigningCredentials(symmetricKey, SecurityAlgorithms.HmacSha256Signature);
 
             var expiry = DateTime.Now.AddMinutes(_jwtSettings.ExpiryInMinutes);
 

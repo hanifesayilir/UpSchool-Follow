@@ -2,7 +2,7 @@
 
 namespace Application.Common.Interfaces
 {
-    public interface IAuthentificationService
+    public interface IAuthenticationService
     {
         Task<string> CreateUserAsync(CreateUserDto createUserDto,CancellationToken cancellationToken);
 

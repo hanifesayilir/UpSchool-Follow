@@ -10,7 +10,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Infrastructure.Services
 {
-    public class AuthenticationManager : IAuthentificationService
+    public class AuthenticationManager : IAuthenticationService
     {
 
         private readonly UserManager<User> _userManager;

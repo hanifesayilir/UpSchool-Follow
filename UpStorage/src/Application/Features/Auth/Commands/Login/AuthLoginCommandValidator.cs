@@ -11,12 +11,12 @@ namespace Application.Features.Auth.Commands.Login
     public class AuthLoginCommandValidator:AbstractValidator<AuthLoginCommand>
     {
 
-        private readonly IAuthentificationService _authentificationService;
+        private readonly IAuthenticationService _authentificationService;
 
-        public AuthLoginCommandValidator(IAuthentificationService authentificationService)
+        public AuthLoginCommandValidator(IAuthenticationService authenticationService)
         {
 
-            _authentificationService= authentificationService;
+            _authentificationService= authenticationService;
 
             RuleFor(x => x.Email)
                 .NotEmpty()

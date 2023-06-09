@@ -8,6 +8,7 @@ namespace Application.Features.Auth.Commands.Login
 {
     public class AuthLoginDto
     {
+        private AuthLoginDto authLoginDto;
 
         public string AccessToken { get; set; }
 
@@ -19,5 +20,10 @@ namespace Application.Features.Auth.Commands.Login
 
             Expires = expires;
         }
+
+      /*  public AuthLoginDto(AuthLoginDto authLoginDto)
+        {
+            this.authLoginDto = authLoginDto;
+        }*/
     }
 }

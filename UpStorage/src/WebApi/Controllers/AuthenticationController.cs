@@ -6,7 +6,7 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthenicationController : ApiControllerBase
+    public class AuthenticationController : ApiControllerBase
     {
 
         [HttpPost("Register")]

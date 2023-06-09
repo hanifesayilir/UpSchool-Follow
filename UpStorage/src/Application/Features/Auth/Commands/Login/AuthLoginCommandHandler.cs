@@ -5,24 +5,24 @@ using MediatR;
 
 namespace Application.Features.Auth.Commands.Login
 {
-    public class AuthLoginCommandHandler : IRequestHandler<AuthLoginCommand, Response<AuthLoginDto>>
+    public class AuthLoginCommandHandler : IRequestHandler<AuthLoginCommand, AuthLoginDto>
     {
 
-        private readonly IAuthentificationService _authentificationService;
+        private readonly IAuthenticationService _authentificationService;
 
-        public AuthLoginCommandHandler(IAuthentificationService authentificationService)
+        public AuthLoginCommandHandler(IAuthenticationService authenticationService)
         {
-            _authentificationService = authentificationService;
+            _authentificationService = authenticationService;
         }
 
-        public async Task<Response<AuthLoginDto>> Handle(AuthLoginCommand request, CancellationToken cancellationToken)
+        public async Task<AuthLoginDto> Handle(AuthLoginCommand request, CancellationToken cancellationToken)
         {
            var jwtDto = await _authentificationService.LoginAsync(MapLoginCommandToRequest(request), cancellationToken);
 
             return MapJwtDtoToAuthLoginDto(jwtDto);
         }
 
-        private Response<AuthLoginDto> MapJwtDtoToAuthLoginDto(JwtDto jwt) => new Response<AuthLoginDto>(new AuthLoginDto(jwt.AccessToken, jwt.ExpiryDate));
+        private AuthLoginDto MapJwtDtoToAuthLoginDto(JwtDto jwt) => new AuthLoginDto(jwt.AccessToken, jwt.ExpiryDate);
 
         private AuthLoginRequest MapLoginCommandToRequest(AuthLoginCommand command) => new AuthLoginRequest(command.Email, command.Password);
 

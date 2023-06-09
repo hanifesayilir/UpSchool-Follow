@@ -7,13 +7,13 @@ namespace Application.Features.Auth.Commands.Register
 {
     public class AuthRegisterCommandHandler : IRequestHandler<AuthRegisterCommand, AuthRegisterDto>
     {
-        private IAuthentificationService _authentificationService;
+        private IAuthenticationService _authentificationService;
 
         private readonly IJwtService _jwtService;
 
         public readonly IEmailService _emailService; 
 
-        public AuthRegisterCommandHandler(IAuthentificationService authentificationService, IJwtService jwtService, IEmailService emailService)
+        public AuthRegisterCommandHandler(IAuthenticationService authentificationService, IJwtService jwtService, IEmailService emailService)
         {
             _authentificationService = authentificationService;
 
@@ -38,13 +38,13 @@ namespace Application.Features.Auth.Commands.Register
 
             
             
-            _emailService.SendEmailConfirmation(new SendEmailConfirmationDto()
+          /*  _emailService.SendEmailConfirmation(new SendEmailConfirmationDto()
 
             {
                 Email = request.Email,
                 Name = request.FirstName,
                 Token= emailToken
-            });
+            });*/
 
             return new AuthRegisterDto(request.Email, fullName, jwtDto.AccessToken);
         }

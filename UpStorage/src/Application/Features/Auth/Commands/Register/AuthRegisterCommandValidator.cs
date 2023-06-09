@@ -10,10 +10,10 @@ namespace Application.Features.Auth.Commands.Register
 {
     public class AuthRegisterCommandValidator:AbstractValidator<AuthRegisterCommand>
     {
-        private readonly IAuthentificationService _authentificationService;
-        public AuthRegisterCommandValidator(IAuthentificationService authentificationService)
+        private readonly IAuthenticationService _authenticationService;
+        public AuthRegisterCommandValidator(IAuthenticationService authenticationService)
         {
-            _authentificationService = authentificationService;
+            _authenticationService = authenticationService;
 
             RuleFor(x => x.Email)
                 .MustAsync(CheckIfUserExist)
@@ -22,7 +22,7 @@ namespace Application.Features.Auth.Commands.Register
 
         private async Task<bool> CheckIfUserExist(string email, CancellationToken cancellationToken)
         {
-            var doesExist = await _authentificationService.CheckIfUserExists(email, cancellationToken);
+            var doesExist = await _authenticationService.CheckIfUserExists(email, cancellationToken);
 
             if (doesExist) return false;
             return true;
