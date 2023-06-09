@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AuthLoginCommand, LocalUser } from "../types/AuthTypes";
+import {AuthLoginCommand, LocalJwt, LocalUser} from "../types/AuthTypes";
 import {
   Button,
   Form,
@@ -10,24 +10,47 @@ import {
   Segment,
 } from "semantic-ui-react";
 import axios from "axios";
+import {getClaimsFromJwt} from "../utils/JwtHelper";
+import {findAllInRenderedTree} from "react-dom/test-utils";
+import { useNavigate} from "react-router-dom"
+import {toast} from "react-toastify";
 
 export type LoginPageProps = {
   setAppUser: (appUser: LocalUser) => void;
 };
 
 function LoginPage({ setAppUser }: LoginPageProps) {
+
+  const navigate = useNavigate();
   const [authLoginCommand, setAuthLoginCommand] = useState<AuthLoginCommand>({
     email: "",
     password: "",
   });
 
   const handleSubmit = async (event: React.FormEvent) => {
+
     const response = await axios.post(
       "https://localhost:7078/api/Authentication/Login",
       authLoginCommand
     );
-    if (response.status) {
-      setAppUser({ id: "123", firstName: "Alper", lastName: "Tunga" });
+    console.log(response);
+    console.log(response.data.accessToken);
+    if (response.status === 200) {
+     // setAppUser({ id: "123", firstName: "Alper", lastName: "Tunga" });
+      const accessToken = response.data.accessToken;
+      const { uid, email, given_name, family_name} = getClaimsFromJwt(accessToken);
+      const expires : string = response.data.expires;
+      const localJwt : LocalJwt = {
+        accessToken,
+        expires
+      }
+      setAppUser({ id: uid, email, firstName: given_name, lastName: family_name, expires, accessToken });
+
+      localStorage.setItem("upstorage_user",JSON.stringify(localJwt));
+      navigate("/");
+
+    } else {
+      toast.error(response.statusText)
     }
   };
   const handleInputChange = (inputName: string, inputValue: string) => {
