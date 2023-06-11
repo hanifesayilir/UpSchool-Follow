@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 import {AuthLoginCommand, LocalJwt, LocalUser} from "../types/AuthTypes";
 import {
   Button,
@@ -14,14 +14,21 @@ import {getClaimsFromJwt} from "../utils/JwtHelper";
 import {findAllInRenderedTree} from "react-dom/test-utils";
 import { useNavigate} from "react-router-dom"
 import {toast} from "react-toastify";
+import {AppUserContext} from "../context/StateContext";
 
-export type LoginPageProps = {
+/*export type LoginPageProps = {
   setAppUser: (appUser: LocalUser) => void;
-};
+};*/
 
-function LoginPage({ setAppUser }: LoginPageProps) {
+const BASE_URL = import.meta.env.VITE_API_URL;
+const LOGIN_URL = `${BASE_URL}/Authentication/Login`;
+
+function LoginPage() {
 
   const navigate = useNavigate();
+
+  const { setAppUser} = useContext(AppUserContext);
+
   const [authLoginCommand, setAuthLoginCommand] = useState<AuthLoginCommand>({
     email: "",
     password: "",
@@ -29,10 +36,8 @@ function LoginPage({ setAppUser }: LoginPageProps) {
 
   const handleSubmit = async (event: React.FormEvent) => {
 
-    const response = await axios.post(
-      "https://localhost:7078/api/Authentication/Login",
-      authLoginCommand
-    );
+    //const response = await axios.post("https://localhost:7078/api/Authentication/Login", authLoginCommand);
+    const response = await axios.post(LOGIN_URL, authLoginCommand);
     console.log(response);
     console.log(response.data.accessToken);
     if (response.status === 200) {
@@ -53,13 +58,12 @@ function LoginPage({ setAppUser }: LoginPageProps) {
       toast.error(response.statusText)
     }
   };
-  const handleInputChange = (inputName: string, inputValue: string) => {
-    if (inputName == "email")
-      setAuthLoginCommand({ ...authLoginCommand, email: inputValue });
-    else setAuthLoginCommand({ ...authLoginCommand, password: inputValue });
-
-    console.log(authLoginCommand);
-  };
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAuthLoginCommand({
+      ...authLoginCommand,
+      [event.target.name]: event.target.value
+    });
+  }
 
   const onGoogleLoginClick = (e: React.FormEvent) => {
     // Handle Google login
@@ -88,7 +92,8 @@ function LoginPage({ setAppUser }: LoginPageProps) {
               iconPosition="left"
               placeholder="Email"
               value={authLoginCommand.email}
-              onChange={(e) => handleInputChange("email", e.target.value)}
+              onChange={handleInputChange}
+              name="email"
             />
             <Form.Input
               fluid
@@ -97,7 +102,8 @@ function LoginPage({ setAppUser }: LoginPageProps) {
               placeholder="Password"
               type="password"
               value={authLoginCommand.password}
-              onChange={(e) => handleInputChange("password", e.target.value)}
+              onChange={handleInputChange}
+              name="password"
             />
 
             <Button color="teal" fluid size="large" type="submit">

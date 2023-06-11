@@ -12,38 +12,13 @@ import { AccountGetAllDto } from "./types/AccountTypes.ts";
 import NavBar from "./components/NavBar.tsx";
 import { useNavigate} from "react-router-dom"
 import {getClaimsFromJwt} from "./utils/JwtHelper";
+import {AppUserContext, AccountsContext} from "./context/StateContext";
+import {DummyData} from "./utils/DummyData";
 
-
-/*const dummyAccounts: AccountGetAllDto[] = [
-  {
-    id: "12345",
-    title: "Yemek Sepeti",
-    url: "www.emeksepeti",
-    isFavourite: false,
-    userId: "ankgmial.com",
-    userName: "alpettunga",
-    password: "123alper32",
-    categories: [],
-    showPassword: false,
-  },
-
-  {
-    id: "45866",
-    title: "Getir",
-    url: "www.getir.com",
-    isFavourite: false,
-    userId: "ankgmial.com",
-    userName: "alpettunga",
-    password: "123alper32",
-    categories: [],
-    showPassword: false,
-  },
-];*/
 
 function App() {
-
     const navigate = useNavigate();
-  const [accounts, setAccounts] = useState<AccountGetAllDto[]>([]);
+  const [accounts, setAccounts] = useState<AccountGetAllDto[]>(DummyData);
 
   const [appUser, setAppUser] = useState<LocalUser | undefined>(undefined);
 
@@ -65,24 +40,20 @@ function App() {
 
   return (
     <>
-      <ToastContainer />
-      <NavBar accounts={accounts} appUser={appUser} />
-      <Container className="App">
-        <Routes>
-          <Route path="/" element={<PasswordGeneratorPage />} />
-          <Route
-            path="/accounts"
-            element={
-              <AccountsPage accounts={accounts} setAccounts={setAccounts} />
-            }
-          />
-          <Route
-            path="/login"
-            element={<LoginPage setAppUser={setAppUser} />}
-          />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Container>
+        <AppUserContext.Provider value={{appUser, setAppUser}}>
+            <AccountsContext.Provider value={{ accounts, setAccounts}}>
+                <ToastContainer />
+                <NavBar />
+                <Container className="App">
+                    <Routes>
+                        <Route path="/" element={<PasswordGeneratorPage />} />
+                        <Route path="/accounts" element={<AccountsPage />}/>
+                        <Route path="/login" element={<LoginPage />}/>
+                        <Route path="*" element={<NotFoundPage />} />
+                    </Routes>
+                </Container>
+            </AccountsContext.Provider>
+        </AppUserContext.Provider>
     </>
   );
 }

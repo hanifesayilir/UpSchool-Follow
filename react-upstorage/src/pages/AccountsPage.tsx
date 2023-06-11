@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { AccountGetAllDto } from "../types/AccountTypes";
 import "./AccountsPage.css";
 import {
@@ -13,17 +13,20 @@ import {
   Card,
 } from "semantic-ui-react";
 import AccountCard from "../components/AccountCard";
+import {AccountsContext} from "../context/StateContext";
 
-export type AccountsPageProps = {
+/*export type AccountsPageProps = {
   accounts: AccountGetAllDto[];
   setAccounts: (accounts: AccountGetAllDto[]) => void;
-};
+};*/
 
-function AccountsPage({ accounts, setAccounts }: AccountsPageProps) {
+function AccountsPage() {
   const options = [
     { key: "1", text: "Ascending", value: "true" },
     { key: "2", text: "Descending", value: "false" },
   ];
+
+  const { accounts, setAccounts} = useContext(AccountsContext);
 
   const onPasswordVisibilityToggle = (id: string) => {
     // Create a new array with the same accounts, but with the showPassword property of the account with the given id toggled
