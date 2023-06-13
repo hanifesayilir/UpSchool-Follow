@@ -15,13 +15,13 @@ import {findAllInRenderedTree} from "react-dom/test-utils";
 import { useNavigate} from "react-router-dom"
 import {toast} from "react-toastify";
 import {AppUserContext} from "../context/StateContext";
+import api from  "../utils/AxiosInstance"
 
 /*export type LoginPageProps = {
   setAppUser: (appUser: LocalUser) => void;
 };*/
 
-const BASE_URL = import.meta.env.VITE_API_URL;
-const LOGIN_URL = `${BASE_URL}/Authentication/Login`;
+
 
 function LoginPage() {
 
@@ -36,26 +36,32 @@ function LoginPage() {
 
   const handleSubmit = async (event: React.FormEvent) => {
 
-    //const response = await axios.post("https://localhost:7078/api/Authentication/Login", authLoginCommand);
-    const response = await axios.post(LOGIN_URL, authLoginCommand);
-    console.log(response);
-    console.log(response.data.accessToken);
-    if (response.status === 200) {
-     // setAppUser({ id: "123", firstName: "Alper", lastName: "Tunga" });
-      const accessToken = response.data.accessToken;
-      const { uid, email, given_name, family_name} = getClaimsFromJwt(accessToken);
-      const expires : string = response.data.expires;
-      const localJwt : LocalJwt = {
-        accessToken,
-        expires
+    event.preventDefault();
+
+    try {
+      const response = await api.post("/Authentication/Login", authLoginCommand);
+
+      if (response.status === 200) {
+        const accessToken = response.data.accessToken;
+        const {uid, email, given_name, family_name} = getClaimsFromJwt(accessToken);
+        const expires: string = response.data.expires;
+
+        setAppUser({ id:uid, email, firstName:given_name, lastName:family_name, expires, accessToken });
+
+        const localJwt: LocalJwt = {
+          accessToken,
+          expires
+        }
+
+        localStorage.setItem("upstorage_user", JSON.stringify(localJwt));
+        navigate("/");
+
+
+      } else {
+        toast.error(response.statusText)
       }
-      setAppUser({ id: uid, email, firstName: given_name, lastName: family_name, expires, accessToken });
-
-      localStorage.setItem("upstorage_user",JSON.stringify(localJwt));
-      navigate("/");
-
-    } else {
-      toast.error(response.statusText)
+    } catch (error) {
+      toast.error("Something went wrong!");
     }
   };
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,8 +74,6 @@ function LoginPage() {
   const onGoogleLoginClick = (e: React.FormEvent) => {
     // Handle Google login
     e.preventDefault();
-
-    console.log(authLoginCommand);
   };
 
   return (

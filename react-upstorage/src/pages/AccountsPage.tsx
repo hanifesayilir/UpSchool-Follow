@@ -14,6 +14,7 @@ import {
 } from "semantic-ui-react";
 import AccountCard from "../components/AccountCard";
 import {AccountsContext} from "../context/StateContext";
+import api from "../utils/AxiosInstance"
 
 /*export type AccountsPageProps = {
   accounts: AccountGetAllDto[];
@@ -65,7 +66,23 @@ function AccountsPage() {
   };
 
   useEffect(() => {
-    return;
+    /*const fetchAccounts = async () => {
+
+      const response = await api.get("/Accounts");
+
+      setAccounts(response.data.items);
+    }
+
+    fetchAccounts();*/
+
+    (async () =>{
+      const response = await api.get("/Accounts");
+
+      setAccounts(response.data.items);
+
+    })();
+
+   // return;
   }, []);
 
   return (

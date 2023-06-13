@@ -14,6 +14,7 @@ import { useNavigate} from "react-router-dom"
 import {getClaimsFromJwt} from "./utils/JwtHelper";
 import {AppUserContext, AccountsContext} from "./context/StateContext";
 import {DummyData} from "./utils/DummyData";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 
 function App() {
@@ -46,8 +47,17 @@ function App() {
                 <NavBar />
                 <Container className="App">
                     <Routes>
-                        <Route path="/" element={<PasswordGeneratorPage />} />
-                        <Route path="/accounts" element={<AccountsPage />}/>
+                        <Route path="/" element={
+                            <ProtectedRoute>
+                                <PasswordGeneratorPage />
+                            </ProtectedRoute>
+
+                           } />
+                        <Route path="/accounts" element={
+                            <ProtectedRoute>
+                                <AccountsPage />
+                            </ProtectedRoute>
+                        }/>
                         <Route path="/login" element={<LoginPage />}/>
                         <Route path="*" element={<NotFoundPage />} />
                     </Routes>
