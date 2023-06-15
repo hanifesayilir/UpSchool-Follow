@@ -1,4 +1,5 @@
-﻿using Application.Features.Accounts.Queries.GetAll;
+﻿using Application.Features.Accounts.Commands.Add;
+using Application.Features.Accounts.Queries.GetAll;
 using Application.Features.Accounts.Queries.GetById;
 using Application.Features.Cities.Commands.Add;
 using Application.Features.Cities.Queries.GetAll;
@@ -8,8 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [Authorize]
     public class AccountsController : ApiControllerBase
     {
         [HttpGet]
@@ -24,5 +24,12 @@ namespace WebApi.Controllers
         {
             return Ok(await Mediator.Send(new AccountGetByIdQuery(id)));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddAsync(AccountAddCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+
     }
 }

@@ -27,6 +27,8 @@ try
     builder.Host.UseSerilog();
     // Add services to the container.
 
+    builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
     builder.Services.AddScoped<ICurrentUserService, CurrentUserManager>();
 
     builder.Services.AddControllers(opt =>

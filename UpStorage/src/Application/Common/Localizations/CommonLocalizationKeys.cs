@@ -16,6 +16,7 @@
         public static class HandlerMessages
         {
             public static string Delete => "HandlerDelete";
+            public static string Add => "HandlerAdd";
         }
     }
 }
