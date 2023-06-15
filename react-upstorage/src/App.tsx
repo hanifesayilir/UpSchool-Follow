@@ -1,71 +1,90 @@
-import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
-import "./App.css";
-import NotFoundPage from "./pages/NotFoundPage.tsx";
-import AccountsPage from "./pages/AccountsPage.tsx";
-import { ToastContainer } from "react-toastify";
-import { Container } from "semantic-ui-react";
+import './App.css'
+import NavBar from './components/NavBar.tsx';
+import {ToastContainer} from 'react-toastify';
+import {Container} from "semantic-ui-react";
+import {Route, Routes} from "react-router-dom";
 import PasswordGeneratorPage from "./pages/PasswordGeneratorPage.tsx";
+import AccountsPage from "./pages/AccountsPage.tsx";
+import NotFoundPage from "./pages/NotFoundPage.tsx";
+import {useEffect, useState} from "react";
+import {AccountGetAllDto} from "./types/AccountTypes.ts";
 import {LocalJwt, LocalUser} from "./types/AuthTypes.ts";
 import LoginPage from "./pages/LoginPage.tsx";
-import { AccountGetAllDto } from "./types/AccountTypes.ts";
-import NavBar from "./components/NavBar.tsx";
-import { useNavigate} from "react-router-dom"
-import {getClaimsFromJwt} from "./utils/JwtHelper";
-import {AppUserContext, AccountsContext} from "./context/StateContext";
-import {DummyData} from "./utils/DummyData";
-import ProtectedRoute from "./components/ProtectedRoute";
-
+import {getClaimsFromJwt} from "./utils/jwtHelper.ts";
+import {useNavigate} from "react-router-dom";
+import {AppUserContext, AccountsContext} from "./context/StateContext.tsx";
+import {DummyData} from "./utils/DummyData.ts";
+import ProtectedRoute from "./components/ProtectedRoute.tsx";
+import AccountsAddPage from "./pages/AccountsAddPage.tsx";
 
 function App() {
+
     const navigate = useNavigate();
-  const [accounts, setAccounts] = useState<AccountGetAllDto[]>(DummyData);
 
-  const [appUser, setAppUser] = useState<LocalUser | undefined>(undefined);
+    const [accounts, setAccounts] = useState<AccountGetAllDto[]>(DummyData);
 
-  useEffect( () =>{
-      const jwtJson  = localStorage.getItem("upstorage_user");
-      if(!jwtJson) {
-        navigate("/login");
-        return;
-      }
-      const localJwt : LocalJwt = JSON.parse(jwtJson);
+    const [appUser, setAppUser] = useState<LocalUser | undefined>(undefined);
 
-      const expires : string = localJwt.expires;
-      const { uid, email, given_name, family_name} = getClaimsFromJwt(localJwt.accessToken);
-      setAppUser({ id: uid, email, firstName: given_name, lastName: family_name, expires, accessToken: localJwt.accessToken });
+    useEffect(() => {
+
+        const jwtJson = localStorage.getItem("upstorage_user");
+
+        if (!jwtJson) {
+            navigate("/login");
+            return;
+        }
+
+        const localJwt: LocalJwt = JSON.parse(jwtJson);
+
+        const {uid, email, given_name, family_name} = getClaimsFromJwt(localJwt.accessToken);
+
+        const expires: string = localJwt.expires;
+
+        setAppUser({
+            id: uid,
+            email,
+            firstName: given_name,
+            lastName: family_name,
+            expires,
+            accessToken: localJwt.accessToken
+        });
 
 
+    }, []);
 
-  },[])
+    return (
+        <>
+            <AppUserContext.Provider value={{appUser, setAppUser}}>
+                <AccountsContext.Provider value={{accounts, setAccounts}}>
+                    <ToastContainer/>
+                    <NavBar />
+                    <Container className="App">
+                        <Routes>
+                            <Route path="/" element={
+                                <ProtectedRoute>
+                                    <PasswordGeneratorPage/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path="/accounts" element={
+                                <ProtectedRoute>
+                                    <AccountsPage />
+                                </ProtectedRoute>
+                            }/>
+                            <Route path="/accounts/add" element={
+                                <ProtectedRoute>
+                                    <AccountsAddPage />
+                                </ProtectedRoute>
+                            }/>
+                            <Route path="/login" element={<LoginPage/>}/>
+                            <Route path="*" element={<NotFoundPage/>}/>
+                        </Routes>
+                    </Container>
+                </AccountsContext.Provider>
+            </AppUserContext.Provider>
+        </>
+    )
 
-  return (
-    <>
-        <AppUserContext.Provider value={{appUser, setAppUser}}>
-            <AccountsContext.Provider value={{ accounts, setAccounts}}>
-                <ToastContainer />
-                <NavBar />
-                <Container className="App">
-                    <Routes>
-                        <Route path="/" element={
-                            <ProtectedRoute>
-                                <PasswordGeneratorPage />
-                            </ProtectedRoute>
-
-                           } />
-                        <Route path="/accounts" element={
-                            <ProtectedRoute>
-                                <AccountsPage />
-                            </ProtectedRoute>
-                        }/>
-                        <Route path="/login" element={<LoginPage />}/>
-                        <Route path="*" element={<NotFoundPage />} />
-                    </Routes>
-                </Container>
-            </AccountsContext.Provider>
-        </AppUserContext.Provider>
-    </>
-  );
 }
 
-export default App;
+
+export default App

@@ -14,3 +14,12 @@ export type AccountGetAllCategoryDto = {
   id: string;
   name: string;
 };
+
+export type AccountAddCommand = {
+  title: string;
+  userName: string;
+  password: string;
+  url?: string;
+  isFavourite: boolean;
+  categoryIds: string[];
+}
