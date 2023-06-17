@@ -1,0 +1,78 @@
+2023-06-18 00:01:12.818 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - -
+2023-06-18 00:01:12.821 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - -
+2023-06-18 00:01:12.887 +03:00 [INF] CORS policy execution successful.
+2023-06-18 00:01:12.887 +03:00 [INF] CORS policy execution successful.
+2023-06-18 00:01:12.889 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - - - 204 - - 71.9270ms
+2023-06-18 00:01:12.895 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - 0
+2023-06-18 00:01:12.891 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - - - 204 - - 70.7109ms
+2023-06-18 00:01:12.900 +03:00 [INF] CORS policy execution successful.
+2023-06-18 00:01:12.901 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - 0
+2023-06-18 00:01:12.905 +03:00 [INF] Executing endpoint '/Hubs/ChatHub/negotiate'
+2023-06-18 00:01:12.908 +03:00 [INF] CORS policy execution successful.
+2023-06-18 00:01:12.909 +03:00 [INF] Executed endpoint '/Hubs/ChatHub/negotiate'
+2023-06-18 00:01:12.911 +03:00 [INF] Executing endpoint '/Hubs/ChatHub/negotiate'
+2023-06-18 00:01:12.914 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - 0 - 200 316 application/json 19.2547ms
+2023-06-18 00:01:12.918 +03:00 [INF] Executed endpoint '/Hubs/ChatHub/negotiate'
+2023-06-18 00:01:12.922 +03:00 [INF] Request starting HTTP/2 CONNECT https://localhost:7078/Hubs/ChatHub?id=ov6QrBoAvkwvdu1VwgbwVA - -
+2023-06-18 00:01:12.924 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - 0 - 200 316 application/json 22.8197ms
+2023-06-18 00:01:12.926 +03:00 [INF] CORS policy execution successful.
+2023-06-18 00:01:12.931 +03:00 [INF] Executing endpoint '/Hubs/ChatHub'
+2023-06-18 00:01:12.931 +03:00 [INF] Request starting HTTP/2 CONNECT https://localhost:7078/Hubs/ChatHub?id=N7_rvttdtRMpzg2iuXxh5Q - -
+2023-06-18 00:01:12.936 +03:00 [INF] CORS policy execution successful.
+2023-06-18 00:01:12.940 +03:00 [INF] Executing endpoint '/Hubs/ChatHub'
+2023-06-18 00:01:32.935 +03:00 [INF] Executed endpoint '/Hubs/ChatHub'
+2023-06-18 00:01:32.935 +03:00 [INF] Executed endpoint '/Hubs/ChatHub'
+2023-06-18 00:01:33.101 +03:00 [INF] Executed endpoint '/Hubs/ChatHub'
+2023-06-18 00:01:33.101 +03:00 [INF] Executed endpoint '/Hubs/ChatHub'
+2023-06-18 00:01:32.935 +03:00 [INF] Executed endpoint '/Hubs/ChatHub'
+2023-06-18 00:01:33.159 +03:00 [INF] Executed endpoint '/Hubs/ChatHub'
+2023-06-18 00:01:33.162 +03:00 [INF] Request finished HTTP/2 CONNECT https://localhost:7078/Hubs/ChatHub?id=RmcIimZzVN_-C32yWc69RQ - - - 200 - - 360316.3763ms
+2023-06-18 00:01:33.282 +03:00 [INF] Request finished HTTP/2 CONNECT https://localhost:7078/Hubs/ChatHub?id=ov6QrBoAvkwvdu1VwgbwVA - - - 200 - - 20360.6644ms
+2023-06-18 00:01:33.339 +03:00 [INF] Request finished HTTP/2 CONNECT https://localhost:7078/Hubs/ChatHub?id=Mv_VI7kqqhO-iPqp56SYJA - - - 200 - - 360487.4083ms
+2023-06-18 00:01:33.439 +03:00 [INF] Request finished HTTP/2 CONNECT https://localhost:7078/Hubs/ChatHub?id=JTo6eJT8asbK6JfcnVqkpA - - - 200 - - 120243.4869ms
+2023-06-18 00:01:33.883 +03:00 [INF] Request finished HTTP/2 CONNECT https://localhost:7078/Hubs/ChatHub?id=cGIsj4DXTNQO5FQzLP02_w - - - 200 - - 413068.2192ms
+2023-06-18 00:01:33.957 +03:00 [INF] Request finished HTTP/2 CONNECT https://localhost:7078/Hubs/ChatHub?id=jO1W9u4IbvuriY7M6xOJBg - - - 200 - - 413141.9534ms
+2023-06-18 00:01:36.602 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - -
+2023-06-18 00:01:36.603 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - -
+2023-06-18 00:01:36.611 +03:00 [INF] CORS policy execution successful.
+2023-06-18 00:01:36.621 +03:00 [INF] CORS policy execution successful.
+2023-06-18 00:01:36.625 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - - - 204 - - 23.1379ms
+2023-06-18 00:01:36.639 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - - - 204 - - 35.6358ms
+2023-06-18 00:01:36.669 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - 0
+2023-06-18 00:01:36.669 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - 0
+2023-06-18 00:01:36.692 +03:00 [INF] CORS policy execution successful.
+2023-06-18 00:01:36.696 +03:00 [INF] CORS policy execution successful.
+2023-06-18 00:01:36.698 +03:00 [INF] Executing endpoint '/Hubs/ChatHub/negotiate'
+2023-06-18 00:01:36.701 +03:00 [INF] Executing endpoint '/Hubs/ChatHub/negotiate'
+2023-06-18 00:01:36.704 +03:00 [INF] Executed endpoint '/Hubs/ChatHub/negotiate'
+2023-06-18 00:01:36.711 +03:00 [INF] Executed endpoint '/Hubs/ChatHub/negotiate'
+2023-06-18 00:01:36.719 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - 0 - 200 316 application/json 49.4790ms
+2023-06-18 00:01:36.723 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - 0 - 200 316 application/json 53.6595ms
+2023-06-18 00:01:36.799 +03:00 [INF] Request starting HTTP/2 CONNECT https://localhost:7078/Hubs/ChatHub?id=DUGyYBQ8b2kd_Ev52rUb2w - -
+2023-06-18 00:01:36.799 +03:00 [INF] Request starting HTTP/2 CONNECT https://localhost:7078/Hubs/ChatHub?id=oNUeNKjMbj0FweDFhTUTag - -
+2023-06-18 00:01:36.813 +03:00 [INF] CORS policy execution successful.
+2023-06-18 00:01:36.819 +03:00 [INF] CORS policy execution successful.
+2023-06-18 00:01:36.821 +03:00 [INF] Executing endpoint '/Hubs/ChatHub'
+2023-06-18 00:01:36.823 +03:00 [INF] Executing endpoint '/Hubs/ChatHub'
+2023-06-18 00:01:48.121 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - -
+2023-06-18 00:01:48.122 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - -
+2023-06-18 00:01:48.131 +03:00 [INF] CORS policy execution successful.
+2023-06-18 00:01:48.133 +03:00 [INF] CORS policy execution successful.
+2023-06-18 00:01:48.137 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - - - 204 - - 15.4130ms
+2023-06-18 00:01:48.139 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - - - 204 - - 17.0530ms
+2023-06-18 00:01:48.143 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - 0
+2023-06-18 00:01:48.146 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - 0
+2023-06-18 00:01:48.147 +03:00 [INF] CORS policy execution successful.
+2023-06-18 00:01:48.155 +03:00 [INF] CORS policy execution successful.
+2023-06-18 00:01:48.166 +03:00 [INF] Executing endpoint '/Hubs/ChatHub/negotiate'
+2023-06-18 00:01:48.168 +03:00 [INF] Executing endpoint '/Hubs/ChatHub/negotiate'
+2023-06-18 00:01:48.170 +03:00 [INF] Executed endpoint '/Hubs/ChatHub/negotiate'
+2023-06-18 00:01:48.173 +03:00 [INF] Executed endpoint '/Hubs/ChatHub/negotiate'
+2023-06-18 00:01:48.175 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - 0 - 200 316 application/json 32.5817ms
+2023-06-18 00:01:48.178 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7078/Hubs/ChatHub/negotiate?negotiateVersion=1 - 0 - 200 316 application/json 32.4661ms
+2023-06-18 00:01:48.179 +03:00 [INF] Request starting HTTP/2 CONNECT https://localhost:7078/Hubs/ChatHub?id=tsA1-TWQ6R6_J2HlikGa-w - -
+2023-06-18 00:01:48.186 +03:00 [INF] Request starting HTTP/2 CONNECT https://localhost:7078/Hubs/ChatHub?id=xpfBHtTqUwR-TlH4Fw5C1A - -
+2023-06-18 00:01:48.192 +03:00 [INF] CORS policy execution successful.
+2023-06-18 00:01:48.195 +03:00 [INF] CORS policy execution successful.
+2023-06-18 00:01:48.196 +03:00 [INF] Executing endpoint '/Hubs/ChatHub'
+2023-06-18 00:01:48.201 +03:00 [INF] Executing endpoint '/Hubs/ChatHub'

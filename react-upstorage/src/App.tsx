@@ -16,6 +16,8 @@ import {AppUserContext, AccountsContext} from "./context/StateContext.tsx";
 import {DummyData} from "./utils/DummyData.ts";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import AccountsAddPage from "./pages/AccountsAddPage.tsx";
+import ChatPage from "./pages/ChatPage";
+import ChatLoginPage from "./pages/ChatLoginPage";
 
 function App() {
 
@@ -76,6 +78,8 @@ function App() {
                                 </ProtectedRoute>
                             }/>
                             <Route path="/login" element={<LoginPage/>}/>
+                            <Route path="/chatlogin" element={<ChatLoginPage/>}/>
+                            <Route path="/message/:userName" element={<ChatPage />} />
                             <Route path="*" element={<NotFoundPage/>}/>
                         </Routes>
                     </Container>

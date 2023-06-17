@@ -23,6 +23,8 @@ const NavBar = () => {
         <Menu.Item as={NavLink} to="/">Home</Menu.Item>
         <Menu.Item as={NavLink} to="/accounts">Accounts ({accounts.length})</Menu.Item>
         <Menu.Item as={NavLink} to="/dafa">Not Found</Menu.Item>
+        <Menu.Item as={NavLink} to="/chatlogin">Chat</Menu.Item>
+
 
         {!appUser && (
           <Menu.Item as={NavLink} to="/login" position="right">

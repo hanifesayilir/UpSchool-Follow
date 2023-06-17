@@ -11,7 +11,12 @@ namespace WebApi.Hubs
             return users;
         }
 
+        public Task UserConnected(string userName)
+        {
+            users.Add(userName);
 
+            return Clients.AllExcept(Context.ConnectionId).SendAsync("NewUserConnected", userName);
+        }
 
         public bool CheckName(string name)
         {
