@@ -13,6 +13,7 @@ using Serilog;
 using System.Globalization;
 using System.Text;
 using WebApi.Filters;
+using WebApi.Hubs;
 using WebApi.Services;
 
 Log.Logger = new LoggerConfiguration()
@@ -166,7 +167,12 @@ try
 
     app.UseAuthorization();
 
+
+
     app.MapControllers();
+
+    app.MapHub<ChatHub>("/Hubs/ChatHub");
+
 
    // throw new NullReferenceException("The package is not installed");
 
